@@ -1,0 +1,222 @@
+/* ==========================================
+   ESTILOS GLOBALES Y PALETA ROSA
+   ========================================== */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #4a3e3e;
+    background-color: #fdf2f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(219, 112, 147, 0.12);
+    border: 1px solid #fbcfe8;
+}
+
+/* TIPOGRAFÍA Y ENCABEZADOS */
+h1 {
+    color: #9d174d;
+    margin-top: 0;
+    font-size: 2.2em;
+}
+
+h2 {
+    color: #be185d;
+    border-bottom: 2px solid #fbcfe8;
+    padding-bottom: 8px;
+    margin-top: 20px;
+}
+
+h3 {
+    color: #db2777;
+}
+
+h4 {
+    color: #e11d48;
+    margin-bottom: 5px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #fbcfe8;
+    margin: 35px 0;
+}
+
+a {
+    color: #db2777;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #be185d;
+}
+
+blockquote {
+    background: #fdf2f8;
+    border-left: 4px solid #f472b6;
+    margin: 15px 0;
+    padding: 12px 18px;
+    font-style: italic;
+    color: #831843;
+    border-radius: 0 8px 8px 0;
+}
+
+/* PERFIL DE CABECERA (TABLA MAQUETA) */
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+.header-table td {
+    border: none;
+    vertical-align: middle;
+}
+
+.profile-img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+    border: 3px solid #f472b6;
+}
+
+/* NAVEGACIÓN Y LISTAS */
+nav {
+    background-color: #fdf2f8;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #fbcfe8;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* TARJETAS DE DESTINOS (ARTICLES) */
+article {
+    background: #fff5f7;
+    border: 1px solid #fbcfe8;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+article img,
+article img.dest-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* TABLAS DE HORARIO Y FIGURAS */
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #ffffff;
+    font-size: 0.95em;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table.data-table th {
+    background-color: #db2777;
+    color: #ffffff;
+    padding: 12px;
+    text-align: left;
+}
+
+table.data-table td {
+    padding: 10px 12px;
+    border: 1px solid #fbcfe8;
+}
+
+table.data-table tr:nth-child(even) {
+    background-color: #fdf2f8;
+}
+
+table.data-table tr:hover {
+    background-color: #fce7f3;
+}
+
+/* FORMULARIO ROSA */
+form {
+    background: #fff5f7;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #fbcfe8;
+    max-width: 600px;
+}
+
+form label {
+    font-weight: 600;
+    color: #831843;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="time"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #f9a8d4;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+    background-color: #ffffff;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form input[type="time"]:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #db2777;
+    box-shadow: 0 0 0 3px rgba(219, 39, 119, 0.15);
+}
+
+form input[type="color"] {
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: transparent;
+}
+
+button[type="submit"] {
+    background-color: #ec4899;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #db2777;
+    transform: translateY(-1px);
+}

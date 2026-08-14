@@ -1,0 +1,40 @@
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f0f2f5;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+/* Clase base común para dimensiones y color del texto */
+.caja {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    color: #ffffff;
+}
+
+/* Caja 1 */
+.top-container {
+    background-color: #e694ed;
+    border: 10px solid #61316d;
+    padding: 20px;
+}
+
+/* Caja 2 */
+.mid-container {
+    background-color: #e1028c;
+    border: 20px solid #8e4971;
+    margin-left: 200px;
+}
+
+/* Caja 3 */
+.bottom-container {
+    background-color: #e18c65;
+    border: 10px solid #2b2d42;
+    margin-left: 400px;
+}
