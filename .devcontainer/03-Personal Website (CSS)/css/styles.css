@@ -1,0 +1,356 @@
+/* 1. Global site styles & Background */
+body {
+  margin: 0;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  background-color: #E4F9F5;
+  color: #40514E;
+  line-height: 1.6;
+}
+
+/* 2. Headings */
+h1 {
+  font-family: 'Sacramento', cursive;
+  color: #66BFBF;
+  font-size: 5.5rem;
+  margin: 50px auto 0 auto;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #11999E;
+  font-size: 2.5rem;
+  font-weight: normal;
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #11999E;
+  font-size: 1.5rem;
+}
+
+/* 3. Horizontal Separators (hr) */
+hr {
+  border-style: dotted;
+  border-color: #EAF6F6;
+  border-width: 6px;
+  border-bottom: none;
+  width: 4%;
+  margin: 100px auto;
+}
+
+/* 4. Links */
+a {
+  color: #11999E;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #28a745; /* Green on hover */
+}
+
+/* 5. Logos and circular images */
+.logo,
+.logo-img {
+  max-width: 100px;
+  max-height: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  margin: 5px 10px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
+}
+
+
+/* 1. Div sections and alternating backgrounds */
+.section {
+  padding: 60px 20px;
+}
+
+/* Alternate background for even sections */
+.section:nth-of-type(even) {
+  background-color: #FFFFFF;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 2. Top container / Hero banner with Mountain and Sticky Clouds */
+.top-container {
+  background-color: #E4F9F5;
+  position: relative;
+  padding-top: 60px;
+  overflow: visible;
+}
+
+/* Sticky Clouds */
+.cloud-sticky {
+  position: sticky;
+  top: 20px;
+  width: 120px;
+  z-index: 10;
+  display: inline-block;
+}
+
+.top-cloud {
+  float: right;
+  margin-right: 15%;
+}
+
+.bottom-cloud {
+  float: left;
+  margin-left: 15%;
+  margin-top: 40px;
+}
+
+/* Static Mountain */
+.mountain {
+  position: static;
+  display: block;
+  margin: 40px auto 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #11999E;
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+/* Clearfix for floating clouds inside top container */
+.top-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* 3. Meet the Team / Heroes Section (Cards layout) */
+.team-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.team-column {
+  flex: 1 1 260px;
+  max-width: 300px;
+}
+
+.team-card {
+  background-color: #FAFAFA;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.team-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.team-card-info {
+  padding: 15px 20px;
+}
+
+.team-card-info h3 {
+  margin: 10px 0 5px 0;
+  color: #11999E;
+}
+
+.team-card-info .role {
+  color: #777;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.team-card-info .dates {
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.team-card-info p {
+  font-size: 0.95rem;
+  color: #40514E;
+}
+
+/* 4. Form Styles (Dotted boundary, rounded inputs, custom background) */
+.form-container {
+  border: 3px dotted #11999E;
+  background-color: #F7FBFB;
+  border-radius: 16px;
+  padding: 35px 30px;
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #11999E;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #B4D7D7;
+  border-radius: 10px; /* Rounded inputs */
+  background-color: #FFFFFF; /* Complementary background */
+  box-sizing: border-box;
+  font-family: 'Merriweather', serif;
+  font-size: 0.95rem;
+  color: #40514E;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #11999E;
+  box-shadow: 0 0 5px rgba(17, 153, 158, 0.4);
+}
+
+.form-group input[type="color"] {
+  height: 45px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #11999E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #28a745;
+}
+
+/* 5. Schedule Table and Other Lists */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  max-width: 950px;
+  margin: 25px auto;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #EAEAEA;
+  text-align: center;
+}
+
+.data-table th {
+  background-color: #11999E;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #F8FCFC;
+}
+
+.skills-list,
+.education-list,
+.hobbies-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.education-list li,
+.skills-list li,
+.hobbies-list li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Destination Cards */
+.dest-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 700px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dest-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin: 15px 0;
+}
