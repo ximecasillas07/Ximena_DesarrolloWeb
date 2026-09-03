@@ -1,12 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Website - CSS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ximena Adelec Casillas González - Personal Website</title>
+
+    <!-- Google Fonts: Merriweather, Montserrat & Sacramento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  
+
+    <!-- ==================== TOP CONTAINER / HERO SECTION ==================== -->
+    <div class="top-container section">
+        <img class="cloud-sticky top-cloud" src="images/cloud.png" alt="Cloud">
+        
+        <h1>I'm Ximena</h1>
+        <h2>a Systems Engineer & Project Manager</h2>
+        
+        <p class="hero-subtitle">Student of Systems Engineering & Computer Graphics | Project Manager of Interns</p>
+        
+        <img class="cloud-sticky bottom-cloud" src="images/cloud.png" alt="Cloud">
+        <img class="mountain" src="images/mountain.png" alt="Mountain">
+    </div>
+
+    <!-- ==================== PROFILE / ABOUT ME ==================== -->
+    <div class="section">
+        <div class="container">
+            <img src="images/mi-foto.jpg" alt="Photograph of Ximena Casillas" class="profile-img">
+            <h2>About Me</h2>
+            <p><strong>Address:</strong> Guadalajara, Jalisco, Mexico</p>
+            <p><strong>Personal Presentation:</strong> I like to be known as <em>Xime</em> or <em>Ximena</em>. I consider myself responsible, resilient, and very active.</p>
+            <blockquote>
+                <q>I don't need approval. Results speak for me.</q> — Thomas Shelby
+            </blockquote>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <div class="section">
+        <div class="container">
+            <h2>Navigation</h2>
+            <p>Visit <a href="destination.html"><strong>My Favorite Spots</strong></a> to explore my top travel destinations!</p>
+            <p>Direct links to destinations:</p>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="destination.html#barcelona">📍 Barcelona, Spain</a></li>
+                <li><a href="destination.html#roppongi">📍 Roppongi (Tokyo), Japan</a></li>
+                <li><a href="destination.html#paris">📍 Paris, France</a></li>
+                <li><a href="destination.html#suiza">📍 Swiss Alps, Switzerland</a></li>
+                <li><a href="destination.html#kyoto">📍 Kyoto, Japan</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== BACKGROUND ==================== -->
+    <div class="section">
+        <div class="container">
+            <h2>Background</h2>
+            <p>
+                I currently serve as Project Manager for the intern team in the Systems Engineering and Computer Graphics program. 
+                My main goal in life as a professional is to graduate from university while securing a stable job in the technology sector.
+            </p>
+
+            <!-- SUBSECTION: EDUCATION -->
+            <h3>Education</h3>
+            <ul class="education-list">
+                <li>
+                    <a href="https://www.teresiano.edu.mx" target="_blank">
+                        <img src="images/logo-teresiano.png" alt="Colegio Teresiano Logo" class="logo">
+                    </a>
+                    <div>
+                        <em>(2011 - 2016)</em> — <a href="https://www.teresiano.edu.mx" target="_blank"><strong>Colegio Teresiano de Guadalajara</strong></a> (1st to 5th Grade)
+                    </div>
+                </li>
+                <li>
+                    <a href="https://www.colegiopalmares.edu.mx" target="_blank">
+                        <img src="images/logo-palmares.png" alt="Colegio Palmares Logo" class="logo">
+                    </a>
+                    <div>
+                        <em>(2016 - 2023)</em> — <a href="https://www.colegiopalmares.edu.mx" target="_blank"><strong>Colegio Palmares</strong></a> (6th Grade to High School)
+                    </div>
+                </li>
+                <li>
+                    <a href="https://www.up.edu.mx" target="_blank">
+                        <img src="images/logo-up.png" alt="Universidad Panamericana Logo" class="logo">
+                    </a>
+                    <div>
+                        <em>(2023 - Present)</em> — <a href="https://www.up.edu.mx" target="_blank"><strong>Universidad Panamericana</strong></a> (Systems Engineering & Computer Graphics)
+                    </div>
+                </li>
+            </ul>
+
+            <!-- SUBSECTION: SKILLS -->
+            <h3>Skills</h3>
+            <ol style="display: inline-block; text-align: left;">
+                <li>C++ — 50%</li>
+                <li>JavaScript — 50%</li>
+                <li>Java — 50%</li>
+                <li>HTML — 30%</li>
+                <li>Python — 20%</li>
+            </ol>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== HOBBIES ==================== -->
+    <div class="section">
+        <div class="container">
+            <h2>Hobbies</h2>
+
+            <!-- SUBSECTION: FAVORITE FOOD -->
+            <h3>Favorite Food</h3>
+            <p><strong>Top 5 Cuisines:</strong></p>
+            <ol style="display: inline-block; text-align: left;">
+                <li>Italian</li>
+                <li>Spanish</li>
+                <li>French</li>
+                <li>Korean</li>
+                <li>Japanese</li>
+            </ol>
+
+            <p><strong>Bottom 3 Cuisines:</strong></p>
+            <ul style="display: inline-block; text-align: left;">
+                <li>Scottish</li>
+                <li>German</li>
+                <li>English</li>
+            </ul>
+
+            <!-- ENTERTAINMENT CATEGORIES -->
+            <h3>Entertainment Categories</h3>
+            <div style="display: inline-block; text-align: left; margin: 0 auto;">
+                <p>
+                    <img src="images/book-icon.png" alt="Books Icon" class="logo">
+                    <strong>Books</strong>
+                </p>
+                <ul>
+                    <li>The Love Hypothesis — Ali Hazelwood</li>
+                    <li>Love on the Brain — Ali Hazelwood</li>
+                    <li>Love, Theoretically — Ali Hazelwood</li>
+                </ul>
+
+                <br>
+
+                <p>
+                    <img src="images/tv-icon.png" alt="Movies and TV Icon" class="logo">
+                    <strong>Movies & TV Shows</strong>
+                </p>
+                <ul>
+                    <li>Suits</li>
+                    <li>Peaky Blinders</li>
+                    <li>The Gentlemen</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== MEET THE TEAM / ADMIRED FIGURES ==================== -->
+    <div class="section">
+        <div class="container">
+            <h2>Meet the Admired Figures</h2>
+            <p>Visionary minds and historical figures that inspire my work and dedication.</p>
+            
+            <div class="team-row">
+                <!-- Person 1 -->
+                <div class="team-column">
+                    <div class="team-card">
+                        <img src="images/ada-lovelace.jpg" alt="Ada Lovelace">
+                        <div class="team-card-info">
+                            <h3>Ada Lovelace</h3>
+                            <p class="role">Mathematician & First Programmer</p>
+                            <p class="dates">1815 – 1852</p>
+                            <p>Created the first algorithm intended to be processed by a machine, pioneering computer science.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Person 2 -->
+                <div class="team-column">
+                    <div class="team-card">
+                        <img src="images/van-gogh.jpg" alt="Vincent van Gogh">
+                        <div class="team-card-info">
+                            <h3>Vincent van Gogh</h3>
+                            <p class="role">Post-Impressionist Painter</p>
+                            <p class="dates">1853 – 1890</p>
+                            <p>Created iconic masterpieces like "The Starry Night", transforming expression and modern visual art.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Person 3 -->
+                <div class="team-column">
+                    <div class="team-card">
+                        <img src="images/einstein.jpg" alt="Albert Einstein">
+                        <div class="team-card-info">
+                            <h3>Albert Einstein</h3>
+                            <p class="role">Theoretical Physicist</p>
+                            <p class="dates">1879 – 1955</p>
+                            <p>Developed the Theory of Relativity and Nobel Prize in Physics winner in 1921.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== WEEKLY SCHEDULE TABLE ==================== -->
+    <div class="section">
+        <div class="container">
+            <h2>Weekly Schedule</h2>
+            <div class="table-responsive">
+                <table class="data-table" id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Description</th>
+                            <th>Place</th>
+                            <th>Type</th>
+                            <th>Notes</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body">
+                        <!-- Sunday -->
+                        <tr>
+                            <td>Sunday 9</td>
+                            <td>09:00</td>
+                            <td>10:00</td>
+                            <td>Sunday Mass</td>
+                            <td>Church</td>
+                            <td>Personal</td>
+                            <td>Regular attendance</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <!-- Monday -->
+                        <tr>
+                            <td>Monday 10</td>
+                            <td>07:00</td>
+                            <td>08:55</td>
+                            <td>GLING1525874 - Integral Calculus</td>
+                            <td>Building G-G 12</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Monday 10</td>
+                            <td>09:00</td>
+                            <td>11:00</td>
+                            <td>GYM</td>
+                            <td>Gym</td>
+                            <td>Personal</td>
+                            <td>Workout session</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Monday 10</td>
+                            <td>11:30</td>
+                            <td>12:55</td>
+                            <td>GLHUM1020845 - Ethics</td>
+                            <td>Building A-A 2</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Monday 10</td>
+                            <td>13:00</td>
+                            <td>14:55</td>
+                            <td>GLING1525882 - Programming &...</td>
+                            <td>Building L-CIAC 2</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Monday 10</td>
+                            <td>16:30</td>
+                            <td>18:00</td>
+                            <td>Systematization Meeting</td>
+                            <td>Campus UP</td>
+                            <td>Professional</td>
+                            <td>ISG Interns</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <!-- Tuesday -->
+                        <tr>
+                            <td>Tuesday 11</td>
+                            <td>07:00</td>
+                            <td>08:25</td>
+                            <td>GLING1525883 - Projects</td>
+                            <td>Building D-D 36</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday 11</td>
+                            <td>09:00</td>
+                            <td>10:55</td>
+                            <td>GLING1525881 - Development of...</td>
+                            <td>Building L-CIAC 2</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday 11</td>
+                            <td>11:30</td>
+                            <td>12:55</td>
+                            <td>GLING1525884 - Chemistry</td>
+                            <td>Building G-G 23</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday 11</td>
+                            <td>13:00</td>
+                            <td>14:55</td>
+                            <td>GINBASI2 - Basic English 2</td>
+                            <td>Building F-F 31</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday 11</td>
+                            <td>17:00</td>
+                            <td>18:55</td>
+                            <td>GLING1525885 - Project Management</td>
+                            <td>Building D-D 24</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <!-- Wednesday -->
+                        <tr>
+                            <td>Wednesday 12</td>
+                            <td>07:00</td>
+                            <td>08:55</td>
+                            <td>GLING1525874 - Integral Calculus</td>
+                            <td>Building G-G 12</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday 12</td>
+                            <td>09:00</td>
+                            <td>11:00</td>
+                            <td>GYM</td>
+                            <td>Gym</td>
+                            <td>Personal</td>
+                            <td>Workout session</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday 12</td>
+                            <td>11:30</td>
+                            <td>12:55</td>
+                            <td>GLHUM1020845 - Ethics</td>
+                            <td>Building A-A 2</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday 12</td>
+                            <td>13:00</td>
+                            <td>14:55</td>
+                            <td>GLING1525882 - Programming &...</td>
+                            <td>Building L-CIAC 2</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday 12</td>
+                            <td>17:00</td>
+                            <td>18:30</td>
+                            <td>Systematization Meeting</td>
+                            <td>Campus UP</td>
+                            <td>Professional</td>
+                            <td>ISG Interns</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <!-- Thursday -->
+                        <tr>
+                            <td>Thursday 13</td>
+                            <td>07:00</td>
+                            <td>08:25</td>
+                            <td>GLING1525883 - Projects</td>
+                            <td>Building D-D 36</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday 13</td>
+                            <td>09:00</td>
+                            <td>10:55</td>
+                            <td>GLING1525881 - Development of...</td>
+                            <td>Building L-CIAC 2</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday 13</td>
+                            <td>11:30</td>
+                            <td>12:55</td>
+                            <td>GLING1525884 - Chemistry</td>
+                            <td>Building G-G 23</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday 13</td>
+                            <td>13:00</td>
+                            <td>14:55</td>
+                            <td>GINBASI2 - Basic English 2</td>
+                            <td>Building F-F 31</td>
+                            <td>School</td>
+                            <td>In-person class</td>
+                            <td>🔴 Busy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== REGISTRATION FORM ==================== -->
+    <div class="section">
+        <div class="container">
+            <h2>Weekly Schedule Form</h2>
+            <form id="schedule-form" action="#" method="post" class="form-container">
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time_start">Time start:</label>
+                    <input type="time" id="time_start" name="time_start" required>
+                </div>
+                <div class="form-group">
+                    <label for="time_end">Time end:</label>
+                    <input type="time" id="time_end" name="time_end" required>
+                </div>
+                <div class="form-group">
+                    <label for="activity">Activity:</label>
+                    <input type="text" id="activity" name="activity" placeholder="Activity name" required>
+                </div>
+                <div class="form-group">
+                    <label for="place">Place:</label>
+                    <input type="text" id="place" name="place" placeholder="Location or workspace">
+                </div>
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type">
+                        <option value="School">School</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Profesional">Profesional</option>
+                        <option value="Familiar">Familiar</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Extra details..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="flag">Flag (Color):</label>
+                    <input type="color" id="flag" name="flag" value="#11999e">
+                </div>
+                <div class="form-group form-checkbox">
+                    <input type="checkbox" id="free_busy" name="free_busy" value="busy">
+                    <label for="free_busy" style="display: inline; margin-bottom: 0;">Mark as Busy</label>
+                </div>
+                <div style="margin-top: 25px;">
+                    <button type="submit" id="submit-btn" class="submit-btn">Submit Activity</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer style="padding: 40px 0 60px 0;">
+        <p style="font-size: 0.9rem; color: #11999E;">© 2026 Ximena Casillas. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Script -->
+    <script src="js/server.js"></script>
+
 </body>
 </html>
