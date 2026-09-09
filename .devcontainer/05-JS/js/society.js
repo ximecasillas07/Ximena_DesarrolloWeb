@@ -45,14 +45,37 @@ function flatlander(width, height, x, y, isHappy) {
     // TODO: Update the x, y position using the this.speedX and this.speedY
     // values of the object. Make sure that when they reach an edge, they
     // bounce back.
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x <= 0 || this.x >= canvasWidth - this.width){
+      this.speedX = -this.speedX;
+      if(this.x < 0) this.x =0;
+      if(this.x > canvasWidth - this.width) this.x = canvasWidth - this.width;
+    }
+    if (this.y <= 0 || this.y >= canvasHeight - this.height){
+      this.speedY = -this.speedY;
+      if(this.y < 0) this.y = 0;
+      if(this.y > canvasHeight - this.height) this.y = canvasHeight - this.height;
+    }
   };
   this.moreHappy = function () {
     // TODO: increase the happyPoints value and check if the isHappy flag
     // needs to be updated along with the image being displayed
+    this.happyPoints += 1;
+    if (this.happyPoints >= 0 && !this.isHappy) {
+      this.isHappy = true;
+      this.image.src = happySrc;
+    }
   };
   this.lessHappy = function () {
     // TODO: decrease the happyPoints value and check if the isHappy flag
     // needs to be updated along with the image being displayed
+    this.happyPoints -= 1;
+        if (this.happyPoints < 0 && this.isHappy) {
+          this.isHappy = false;
+          this.image.src = sadSrc;
+        }
   };
   this.checkSurroundings = function (other) {
     var x = Math.pow(this.x - other.x, 2);
@@ -63,19 +86,25 @@ function flatlander(width, height, x, y, isHappy) {
 
 function startGame() {
   // TODO: make sure to get all the values from the screen
-  var n = 1;
-  var m = 1;
+  var n = parseInt(document.getElementById("num").value) || 0;
+  var m = parseInt(document.getElementById("sad").value) || 0;
+
   if (parseInt(m) > parseInt(n)) {
     window.alert("Can not have more sad than individuals.");
     return;
   }
-  var sad = 0;
-  for (i = 0; i < n; i++) {
+
+  myGamePiece = [];
+  myGameArea.timer = 0;
+  myGameArea.running = true;
+
+  for (var i = 0; i < n; i++) {
     //var rand = Math.random() * 100;
     // 30% of chance of getting an angry subject
-    var nX = (Math.random() * 10000) % myGameArea.canvas.width;
-    var nY = (Math.random() * 10000) % myGameArea.canvas.height;
-    var gamePiece = new flatlander(30, 30, nX, nY, ++sad > m);
+    var nX = (Math.random() * 10000) % (myGameArea.canvas.width-30);
+    var nY = (Math.random() * 10000) % (myGameArea.canvas.height-30);
+    var isSad = (i < m); 
+    var gamePiece = new flatlander(30, 30, nX, nY, !isSad);
     myGamePiece.push(gamePiece);
   }
   myGameArea.start();
@@ -84,16 +113,16 @@ function startGame() {
 function updateGameArea() {
   if (myGameArea.running) {
     myGameArea.clear();
-    for (i = 0; i < myGamePiece.length; i++) {
+    for (var i = 0; i < myGamePiece.length; i++) {
       myGamePiece[i].newPos(myGameArea.canvas.width, myGameArea.canvas.height);
       myGamePiece[i].update();
     }
     var tmpFocus, d;
     var happy = 0;
     var sad = 0;
-    for (i = 0; i < myGamePiece.length; i++) {
+    for (var i = 0; i < myGamePiece.length; i++) {
       tmpFocus = myGamePiece[i];
-      for (j = i + 1; j < myGamePiece.length; j++) {
+      for (var j = i + 1; j < myGamePiece.length; j++) {
         d = tmpFocus.checkSurroundings(myGamePiece[j]);
         if (d < maxDist) {
           if (myGamePiece[j].isHappy) {
