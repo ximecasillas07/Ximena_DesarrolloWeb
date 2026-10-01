@@ -1,13 +1,12 @@
-import express from 'express';
+import express from "express";
+// const express = require('express'); old version
+// import axios from "axios";
+import { getWeatherfrom }from "./services/meteo-service.js";
 
-const app = express();
-const PORT = 3000;
 
-// ==========================================
-// 1. MIDDLEWARE CONFIGURATION
-// ==========================================
-// TODO: Mount built-in JSON body parser middleware (app.use(express.json()))
-app.use(express.json());
+const app = express(); //when we call express we get an application
+app.use(express.json()); // Middleware, change the behaviour of the server; configure express server that whenever it recieves info to interpret it as a json
+//when you configure a server, it will get executed from top to bottom. Anything declared before this will not be prepared to handle json
 
 // Mock In-Memory Database
 const scientists = [
@@ -18,75 +17,97 @@ const scientists = [
 
 const initiatives = [];
 
-// ==========================================
-// 2. ROUTES & ENDPOINTS
-// ==========================================
-
-// 2a. HTML Root Landing Route
-// TODO: Create GET '/' endpoint returning a basic HTML status heading string using res.send()
-app.get('/', (req, res) =>{
-  res.send('<h1>SustainHub Climate Action API Engine</h1>');
+app.get("/", (req, res) => { //this callback func will alaways recieve two varaible: request and response
+  res.send(`
+        <div style="font-family: sans-serif; padding: 20px;">
+            <h1> SustainHub Decoupled REST API</h1>
+            <p>Status: <span style="color: green; font-weight: bold;">ONLINE</span></p>
+            <p>Available JSON endpoints: <code>/api/scientists</code>, <code>/api/initiatives</code></p>
+        </div>
+    `);
 });
 
-// 2b. GET All Scientists with Query Filtering (req.query)
-// TODO: Create GET '/api/scientists' endpoint
-// - If req.query.dept is provided, filter scientists by department
-// - Return JSON response with status 200: res.json(...)
-app.get('/api/scientists', (req, res) =>{
-  const { dept } = req.query;
 
-  if(dept){
-    const filtered = scientists.filter(
-      (s) => s.department.toLowerCase() === dept.toLowerCase()
+//http://localhost:port/greet?name=Valeria&city=Guadalajara
+app.get("/greet", (req, res) => {
+  const { name, city } = req.query;
+  res.send(`Hello ${name}, how is the weather in ${city}`);
+});
+
+// /api/scientists?dept=***
+app.get("/api/scientists", (req, res) => {
+  const { dept } = req.query; // this way of getting info is called destructuring
+  if(dept) {
+    const result = scientists.filter(
+      (scientist) => scientist.department.toLowerCase() === dept.toLowerCase(), 
     );
-    return res.json(filtered);
+    if(result && result.length > 0){
+      return res.json({
+        deptScientists: result,
+        dept, 
+        count: result.length,
+      });
+    } else {
+      return res.json({ errorMsg:  `No results for the department ${dept}`, dept });
+    }
   }
-  res.json(scientists);
+  res.json({ deptScientists: scientists, count: scientists.length });
 });
 
-// 2c. GET Single Scientist by ID (req.params)
-// TODO: Create GET '/api/scientists/:id' endpoint
-// - Parse req.params.id as an integer
-// - Find scientist matching ID
-// - Return 404 JSON error if not found, or 200 JSON object if found
-app.get('/api/scientists/:id',(req, res) => {
+// /api/scientists/:id
+app.get("/api/scientists/:id/profile/:keyword", (req, res) => {
   const scientistId = parseInt(req.params.id, 10);
+  const { keyword } = req.params;
   const scientist = scientists.find((s) => s.id === scientistId);
-
   if(!scientist){
-    return res.status(404).json({error: "Scientist not found" });
+    return res.json({ success: false, errorMsg: "No scientist found." });
   }
-  res.json(scientist);
+  res.json({
+    success: true, 
+    data: scientist,
+    keyword,
+  });
 });
 
-// 2d. POST Create New Initiative (req.body)
-// TODO: Create POST '/api/initiatives' endpoint
-// - Extract title, budget, and department from req.body
-// - Validate fields (return 400 JSON error if missing)
-// - Create new initiative object, push to array
-// - Return 201 Created JSON response
-app.post('/api/initiatives', (req, res) => {
-  const {title, budget, department} = req.body;
-
-  if(!title || !budget || !department){
-    return res.status(400).json({error: "Title, budget, and department are required"});
-  }
-
-  const newInitiative = {
-    id: initiatives.length +1,
-    title,
-    budget,
-    department
-  };
-
-  initiatives.push(newInitiative);
-
-  res.status(201).json(newInitiative);
+app.get("/api/initiatives", (req, res) => {
+  res.json({ initiatives, status: "Ok" });
 });
 
-// ==========================================
-// 3. SERVER INITIALIZATION
-// ==========================================
-app.listen(PORT, () => {
-    console.log(`🚀 SustainHub API Server running at http://localhost:${PORT}`);
+app.post("/api/initiatives", (req, res) => {
+  const { title, budget, department } = req.body;
+  const initiative = { title, budget, department };
+  initiatives.push(initiative);
+  res.json({ title, budget, department, status: "Ok" });
+});
+
+
+app.get("/about", (req, res) => {
+  res.send('This is my WebApp class project.');
+});
+
+app.post("/about", (req, res) => {
+  res.send('This is still my WebApp class project, but secure.');
+});
+
+app.get("/weatherGDL", async (req, res) => {
+  const respString = await getWeatherfrom(20.6597, -103.349, "Guadalajara");
+  res.send(respString);
+  /* before meteo-service.js: 
+  const apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=20.6597&longitude=-103.349&current_weather=true";
+  const response = await axios(apiUrl);
+  const currentWeather = response.data;
+  console.log(currentWeather); 
+  res.send(`In Guadalajara, the current temps is ${currentWeather.current_weather.temperature} C`); */
+
+});
+
+app.get("/weatherLSN", async (req, res) => {
+  const respString = await getWeatherfrom(46.52, 6.63, "Lausanne");
+  res.send(respString);
+
+});
+
+        //which is the port that this server will be listening to 
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000'); //port 3000
 });
