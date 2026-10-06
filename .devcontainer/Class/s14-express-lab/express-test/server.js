@@ -2,7 +2,7 @@ import express from "express";
 // const express = require('express'); old version
 // import axios from "axios";
 import { getWeatherfrom }from "./services/meteo-service.js";
-
+import { WeatherError, error } from "./services/weather-error.js";
 
 const app = express(); //when we call express we get an application
 app.use(express.json()); // Middleware, change the behaviour of the server; configure express server that whenever it recieves info to interpret it as a json
@@ -16,6 +16,7 @@ const scientists = [
 ];
 
 const initiatives = [];
+
 
 app.get("/", (req, res) => { //this callback func will alaways recieve two varaible: request and response
   res.send(`
@@ -81,12 +82,16 @@ app.post("/api/initiatives", (req, res) => {
 });
 
 
-app.get("/about", (req, res) => {
-  res.send('This is my WebApp class project.');
+app.get("/about", (req, res, next) => {
+  next({msg: "This is my WebApp class project."});
 });
 
 app.post("/about", (req, res) => {
   res.send('This is still my WebApp class project, but secure.');
+});
+
+app.get("/about", (req, res, next) => {
+  res.send("Second endpoint.");
 });
 
 app.get("/weatherGDL", async (req, res) => {
@@ -106,6 +111,51 @@ app.get("/weatherLSN", async (req, res) => {
   res.send(respString);
 
 });
+
+const cities = {
+  GDL: { lat: 20.6597, long: -103.349 },
+  LSN: { lat: 46.52, long: 6.63 },
+};
+
+//try catch way
+/*app.get("/weather/:city", async (req, res) => { //we need to think defensively when programming 
+  try{
+    const { city } = req.params;
+    if(!city) throw new Error("City code is required");
+    if(!cities[city]) throw new Error("City code is not valid");
+    const { lat, long, name } = cities[city];
+
+    const respString = await getWeatherfrom(lat, long, name);
+    res.send(respString);
+  } catch (error) {
+    console.error(error);
+    if(error.message === "City code is required") {
+      res.status(400).send({ error: "City code is required" });
+    }
+    res.status(500).send({ error: "Unknown error" });
+  }
+
+}); */
+
+//with next, we do not use try-catch 
+app.get("/weather/:city", async (req, res, next) => { //we need to think defensively when programming 
+    const { city } = req.params;
+    if(!city) 
+      next(new WeatherError("City code is required", 400, "/weather/:city")); //before WeatherError we used Error
+    if(!cities[city]) 
+      next(new WeatherError("City code is not valid", 400, "/weather/:city"));
+    const { lat, long, name } = cities[city];
+    const respString = await getWeatherfrom(lat, long, name);
+    res.send(respString);
+});
+
+/*app.all("*", (req, res, next) => {
+  next(new Error("Endpoint not found"));
+});
+*/
+
+app.use(errorMiddleware);
+
 
         //which is the port that this server will be listening to 
 app.listen(3000, () => {
