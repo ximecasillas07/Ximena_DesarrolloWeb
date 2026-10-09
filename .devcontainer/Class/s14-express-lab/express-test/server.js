@@ -1,12 +1,12 @@
 import express from "express";
 // const express = require('express'); old version
 // import axios from "axios";
+import weatherRoutes from "./routes/weatherRoutes.js";
 import { getWeatherfrom }from "./services/meteo-service.js";
 import { WeatherError, error } from "./services/weather-error.js";
 
-const app = express(); //when we call express we get an application
-app.use(express.json()); // Middleware, change the behaviour of the server; configure express server that whenever it recieves info to interpret it as a json
-//when you configure a server, it will get executed from top to bottom. Anything declared before this will not be prepared to handle json
+const app = express(); 
+app.use(express.json()); // Middleware
 
 // Mock In-Memory Database
 const scientists = [
@@ -17,8 +17,16 @@ const scientists = [
 
 const initiatives = [];
 
+const protect = (req, res, next) => {
+  const { token } = req.headers;
+  if(!token || token !== "my-secret-token") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
 
-app.get("/", (req, res) => { //this callback func will alaways recieve two varaible: request and response
+
+app.get("/", (req, res) => { 
   res.send(`
         <div style="font-family: sans-serif; padding: 20px;">
             <h1> SustainHub Decoupled REST API</h1>
@@ -37,7 +45,7 @@ app.get("/greet", (req, res) => {
 
 // /api/scientists?dept=***
 app.get("/api/scientists", (req, res) => {
-  const { dept } = req.query; // this way of getting info is called destructuring
+  const { dept } = req.query; 
   if(dept) {
     const result = scientists.filter(
       (scientist) => scientist.department.toLowerCase() === dept.toLowerCase(), 
@@ -81,83 +89,33 @@ app.post("/api/initiatives", (req, res) => {
   res.json({ title, budget, department, status: "Ok" });
 });
 
+//same endpoint, listening to the same method. 
+//this method will access the info the previous get/about one gave
 
-app.get("/about", (req, res, next) => {
-  next({msg: "This is my WebApp class project."});
-});
+app.get("/about", 
+  (req, res, next) => {
+    req._internalMsg = "This is my WebApp class project.";
+    //instead of calling next(), if res.send(`Second endpoint...) is called here, the next method will not be executed.
+    next();
+  }, 
+  (req, res, next) => {
+    res.send(`Second endpoint. ${req._internalMsg}`); 
+  }
+); //chaining the endpoints, i do something in a mtheod and i keep pushing forward, and someone else (another method) down the road will continue the work. This is called middleware chaining. The next() function is used to pass control to the next middleware function in the stack.
 
 app.post("/about", (req, res) => {
   res.send('This is still my WebApp class project, but secure.');
 });
 
-app.get("/about", (req, res, next) => {
-  res.send("Second endpoint.");
-});
 
-app.get("/weatherGDL", async (req, res) => {
-  const respString = await getWeatherfrom(20.6597, -103.349, "Guadalajara");
-  res.send(respString);
-  /* before meteo-service.js: 
-  const apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=20.6597&longitude=-103.349&current_weather=true";
-  const response = await axios(apiUrl);
-  const currentWeather = response.data;
-  console.log(currentWeather); 
-  res.send(`In Guadalajara, the current temps is ${currentWeather.current_weather.temperature} C`); */
+app.use("/api/weather", protect, weatherRoutes); //this is the route that will handle all the weather endpoints
 
-});
-
-app.get("/weatherLSN", async (req, res) => {
-  const respString = await getWeatherfrom(46.52, 6.63, "Lausanne");
-  res.send(respString);
-
-});
-
-const cities = {
-  GDL: { lat: 20.6597, long: -103.349 },
-  LSN: { lat: 46.52, long: 6.63 },
-};
-
-//try catch way
-/*app.get("/weather/:city", async (req, res) => { //we need to think defensively when programming 
-  try{
-    const { city } = req.params;
-    if(!city) throw new Error("City code is required");
-    if(!cities[city]) throw new Error("City code is not valid");
-    const { lat, long, name } = cities[city];
-
-    const respString = await getWeatherfrom(lat, long, name);
-    res.send(respString);
-  } catch (error) {
-    console.error(error);
-    if(error.message === "City code is required") {
-      res.status(400).send({ error: "City code is required" });
-    }
-    res.status(500).send({ error: "Unknown error" });
-  }
-
-}); */
-
-//with next, we do not use try-catch 
-app.get("/weather/:city", async (req, res, next) => { //we need to think defensively when programming 
-    const { city } = req.params;
-    if(!city) 
-      next(new WeatherError("City code is required", 400, "/weather/:city")); //before WeatherError we used Error
-    if(!cities[city]) 
-      next(new WeatherError("City code is not valid", 400, "/weather/:city"));
-    const { lat, long, name } = cities[city];
-    const respString = await getWeatherfrom(lat, long, name);
-    res.send(respString);
-});
-
-/*app.all("*", (req, res, next) => {
+app.all("/{*splat}", (req, res, next) => {
   next(new Error("Endpoint not found"));
 });
-*/
 
 app.use(errorMiddleware);
 
-
-        //which is the port that this server will be listening to 
 app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000'); //port 3000
+  console.log('Server is running on http://localhost:3000');
 });
