@@ -10,15 +10,63 @@
 
 <body>
     <% if (locals.error) { %>
-        <h3>
+        <h3 style="color: red;">
             <%= error %>
         </h3>
         <% } %>
             <form action="/greet" method="get">
                 Register:
-                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="text" name="name" id="name" placeholder="Name" required>
                 <input type="submit" value="go next">
             </form>
+
+            <!-- lista de personas saludadas con el enlace de wazzup-->
+            <h3>Greetings:</h3>
+            <ul>
+                <% if (names && names.length > 0) { %>
+                    <% names.forEach((nombre, index) => { %>
+                        <li>
+                            <a href="/greet/<%= index %>"> Hello <%= nombre %>!</a>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <li> No names resgistered </li>
+                <% } %>
+            </ul>
+
+            <hr>
+
+            <!-- seccion TODO list -->
+            <h3>TODO list</h3>
+
+            <!-- formulario para agregar tareas -->
+            <form action="/task" method="post">
+                <input type="text" name="task" placeholder="New Task" required>
+                <button type="submit"> Add task </button>
+            </form>
+
+            <!-- lista de tareas con boton de eliminar y para ordenar-->
+             <ul>
+                <% if(tasks && tasks.length > 0){ %>
+                    <% tasks.forEach((item, index) => { %>
+                        <li style="margin-bottom: 8px;">
+                            <span><%= item %> </span>
+                            <% if (index > 0 ){ %>
+                                <a href="/task/up/<%= index %>" title="Up"> ⬆️ </a> 
+                            <% } %>
+                            <% if (index < tasks.length - 1) { %>
+                                <a href="/task/down/<%= index %>" title="Down"> ⬇️ </a>
+                            <% } %>
+
+                            <form action="/task/delete/<%= index %>" method="post" style="display: inline;">
+                                <button type="submit"> Delete </button>
+                            </form>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <li> No tasks in list </li>
+                <% } %>
+             </ul>
 
 </body>
 
