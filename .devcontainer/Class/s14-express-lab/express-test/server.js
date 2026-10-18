@@ -1,12 +1,18 @@
 import express from "express";
-// const express = require('express'); old version
-// import axios from "axios";
 import weatherRoutes from "./routes/weatherRoutes.js";
-import { getWeatherfrom }from "./services/meteo-service.js";
+import { getWeatherfrom }from "./errors/meteo-service.js";
 import { WeatherError, error } from "./services/weather-error.js";
+import { connectDB } from "./config/db";
+import {createUser, findUser, findUsers} from "./services/user-service.js";
 
 const app = express(); 
 app.use(express.json()); // Middleware
+
+import {loadEnvFile} from "node:process";
+loadEnvFile();
+const dbUser = process.env.DB_USER;
+const dbPass = process.env.DB_PASSWORD;
+const dbName = 'test';
 
 // Mock In-Memory Database
 const scientists = [
@@ -17,6 +23,11 @@ const scientists = [
 
 const initiatives = [];
 
+//mongo datebase
+const mongoUrl = `mongodb+srv://${dbUser}:${dbPass}@cluster0.mtnp2kt.mongodb.net/${dbName}` 
+connectDB(mongoUrl);
+
+
 const protect = (req, res, next) => {
   const { token } = req.headers;
   if(!token || token !== "my-secret-token") {
@@ -24,7 +35,6 @@ const protect = (req, res, next) => {
   }
   next();
 }
-
 
 app.get("/", (req, res) => { 
   res.send(`
@@ -36,6 +46,9 @@ app.get("/", (req, res) => {
     `);
 });
 
+app.post("/user", (req, res) => {
+  
+});
 
 //http://localhost:port/greet?name=Valeria&city=Guadalajara
 app.get("/greet", (req, res) => {
